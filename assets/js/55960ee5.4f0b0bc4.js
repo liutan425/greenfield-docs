@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkgreenfield_docs=self.webpackChunkgreenfield_docs||[]).push([[4121],{88070:e=>{e.exports=JSON.parse('[{"label":"test","permalink":"/greenfield-docs/docs/tags/test","count":1}]')}}]);
