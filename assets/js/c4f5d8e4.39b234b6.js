@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkgreenfield_docs=self.webpackChunkgreenfield_docs||[]).push([[4195],{62841:(e,d,c)=>{c.r(d),c.d(d,{default:()=>s});var n=c(67294),r=c(16550);function s(){return n.createElement(r.l_,{to:"/greenfield-docs/docs/guide/home"})}}}]);
