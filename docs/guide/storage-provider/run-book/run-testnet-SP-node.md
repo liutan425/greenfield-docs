@@ -154,10 +154,9 @@ IsMasterDB = true
 BsDBSwitchCheckIntervalSec = 30
 
 [BlockSyncer]
-Modules = ['epoch','bucket','object','payment','group','permission','storage_provider','prefix_tree']
-Dsn = "user:passwd*@tcp(localhost:3306)/block_syncer?parseTime=true&multiStatements=true&loc=Local"
+Modules = ['epoch','bucket','object','payment','group','permission','storage_provider','prefix_tree', 'virtual_group','sp_exit_events','object_id_map']
+Dsn = "user:passwd*@tcp(localhost:3306)/block_syncer?parseTime=true&multiStatements=true&loc=Local&interpolateParams=true"
 DsnSwitched = ''
-RecreateTables = false
 Workers = 50
 EnableDualDB = false
 ```
