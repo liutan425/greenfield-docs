@@ -184,7 +184,7 @@ We recommend you writing `db User, db password, db address, bucketURL, OperatorP
 
 You should create three databases: SpDB, BsDB and BsDBBackup, take MySQL as an example, other DB is the same:
 
-block_syncer and block_syncer_backup require the utf8mb4_unicode_ci encoding format
+block_syncer and block_syncer_backup require the <font color=red>utf8mb4_unicode_ci encoding</font> format
 
 ```shell
 # login in mysql and create database
@@ -192,9 +192,16 @@ block_syncer and block_syncer_backup require the utf8mb4_unicode_ci encoding for
 mysql> CREATE DATABASE storage_provider_db;
 mysql> CREATE DATABASE block_syncer;
 mysql> CREATE DATABASE block_syncer_backup;
-# Check the database encoding format
+# check the database encoding format
 mysql> show create database block_syncer;
 ```
+
+This is the encoding we expect to see
+
+| Database | Create Database |
+|----------|-----------------|
+|blocl_syncer |  CREATE DATABASE `block_syncer` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_0900_ai_ci` */ /*!80016 DEFAULT ENCRYPTION='N' */|
+
 
 ### 4. Run SP
 
