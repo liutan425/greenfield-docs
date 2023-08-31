@@ -264,7 +264,11 @@ const sidebars = {
           items:[
             "tutorials/dapp/overview",
             "tutorials/dapp/quick-start",
-            "tutorials/dapp/showcases"
+            "tutorials/dapp/dapp-integration",
+            "tutorials/dapp/permission-control",
+            "tutorials/dapp/primitive-interface",
+            "tutorials/dapp/contract-list",
+            "tutorials/dapp/showcases",
           ]
         },
         {

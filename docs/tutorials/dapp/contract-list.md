@@ -1,3 +1,8 @@
+---
+title: Contract Entrypoint
+order: 7
+---
+
 # Contract Entrypoint
 
 ## Testnet

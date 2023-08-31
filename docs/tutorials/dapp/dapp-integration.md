@@ -1,3 +1,8 @@
+---
+title: Integrating BSC Smart Contracts with Greenfield Projects
+order: 4
+---
+
 # Contract SDK
 
 The [Smart Contract SDK](https://github.com/bnb-chain/greenfield-contracts-sdk),
