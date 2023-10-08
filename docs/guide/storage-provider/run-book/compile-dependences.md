@@ -1,14 +1,13 @@
 ---
 title: SP Compiling and Dependencies
-order: 1
 ---
 
 ## Compile SP
 
 Compilation dependencies:
 
-- [Golang](https://go.dev/dl): SP is written in Golang, you need to install it. Golang version requires `1.20+`.
-- [Buf](https://buf.build/docs/installation/): A new way of working with Protocol Buffers. SP uses Buf to manage proto files.
+- [Golang](https://go.dev): SP is written in Golang, you need to install it. Golang version requires `1.20+`.
+- [Buf](https://buf.build): A new way of working with Protocol Buffers. SP uses Buf to manage proto files.
 - [protoc-gen-gocosmos](https://github.com/cosmos/gogoproto): Protocol Buffers for Go with Gadgets. SP uses this protobuf compiler to generate pb.go files.
 - [mockgen](https://github.com/uber-go/mock): A mocking framework for the Go programming language that is used in unit test.
 - [jq](https://stedolan.github.io/jq/): Command-line JSON processor. Users should install jq according to your operating system.
@@ -17,7 +16,7 @@ Compilation dependencies:
 # clone source code
 git clone https://github.com/bnb-chain/greenfield-storage-provider.git
 
-cd greenfield-storage-provider
+cd greenfield-storage-provider/
 
 # install dependent tools: buf, protoc-gen-gocosmos and mockgen
 make install-tools
@@ -40,10 +39,10 @@ Greenfield Storage Provider
     /____/\__/\____/_/   \__,_/\__, /\___/  / .___/_/   \____/|___/_/\__,_/\___/_/
     /____/       /_/
 
-Version : vx.x.x
+Version : v1.0.0
 Branch  : master
-Commit  : 342930b89466c15653af2f3695cfc72f6466d4b8
-Build   : go1.20.3 darwin arm64 2023-06-20 10:31
+Commit  : 7e1f56809c5385bf1ea6f41d318ab1419dcb0f86
+Build   : go1.20.3 darwin arm64 2023-10-08 10:31
 
 # show the gnfd-sp help info
 ./gnfd-sp -h
@@ -92,8 +91,12 @@ Greenfield is a decentralized data storage system which uses object storage as t
 The following lists the supported data storage systems:
 
 1. [AWS S3](https://aws.amazon.com/s3/): An object storage can be used in production environment.
-2. [MinIO](https://min.io/): An object storage can be used in production environment which is compatible with AWS S3.
-3. [POSIX Filesystem](https://en.wikipedia.org/wiki/POSIX): Local filesystem is used for experiencing the basic features of SP and understanding how SP works. The piece data created by SP cannot be got within the network and can only be used on a single machine.
+2. [Aliyun OSS](https://www.alibabacloud.com/en/product/object-storage-service): Fully managed object storage service to store and access any amount of data from anywhere.
+3. [B2](https://www.backblaze.com/cloud-storage): Backblaze B2 provides unlimited data storage in the cloud at 1/5th the cost of Amazon S3.
+4. [MinIO](https://min.io/): An object storage can be used in production environment which is compatible with AWS S3.
+5. [POSIX Filesystem](https://en.wikipedia.org/wiki/POSIX): Local filesystem is used for experiencing the basic features of SP and understanding how SP works. The piece data created by SP cannot be got within the network and can only be used on a single machine.
+
+Detailed info about `PieceStore`, you can refer this [doc](./piece-store.md).
 
 ### Install Dependencies
 

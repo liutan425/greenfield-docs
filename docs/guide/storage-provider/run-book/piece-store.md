@@ -1,24 +1,30 @@
 ---
 title: How to deploy Piece Store
-order: 5
 ---
 
 Greenfield SP is a storage infrastructure for Greenfield decentralized storgage platform. Greenfield SP uses `PieceStore` to store users' payload data.
 
-# PieceStore Config
+## PieceStore Config
 
 When creating a PieceStore, there are the following options to configure underlying storage:
 
 ```toml
 [PieceStore]
+# required
 Shards = 0
 
 [PieceStore.Store]
+# required
 Storage = ''
+# optional
 BucketURL = ''
+# optional
 MaxRetries = 0
+# optional
 MinRetryDelay = 0
+# optional
 TLSInsecureSkipVerify = false
+# required
 IAMType = ''
 ```
 
