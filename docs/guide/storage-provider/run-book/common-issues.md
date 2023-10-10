@@ -8,8 +8,8 @@ This is a list of solutions to common SP deployment issues
   - [1. Why send tx failed?](#1-why-send-tx-failed)
   - [2. Why is Proposal Rejected?](#2-why-is-proposal-rejected)
   - [3. Why is Proposal Failed](#3-why-is-proposal-failed)
-- [SP node issues](#sp-node-issues)
-  - [1. Address not found issue](#1-address-not-found-issue)
+- [SP Node Issues](#sp-node-issues)
+  - [1. Address Not Found Issue](#1-address-not-found-issue)
     - [Description](#description)
     - [Root Cause](#root-cause)
     - [Solution](#solution)
@@ -32,20 +32,20 @@ This is a list of solutions to common SP deployment issues
   - [6. SP Standard Test Issue](#6-sp-standard-test-issue)
     - [Description](#description-5)
     - [Root Cause](#root-cause-5)
-    - [Solutiion](#solutiion)
-- [DCellar Integration issues](#dcellar-integration-issues)
-  - [1. No 'Access-Control-Allow-Origin' header is present on the requested resource](#1-no-access-control-allow-origin-header-is-present-on-the-requested-resource)
     - [Solution](#solution-5)
+- [DCellar Integration Issues](#dcellar-integration-issues)
+  - [1. No 'Access-Control-Allow-Origin' header is present on the requested resource](#1-no-access-control-allow-origin-header-is-present-on-the-requested-resource)
+    - [Solution](#solution-6)
   - [2. when an OPTION request is made, I get OPTIONS 405 (Method Not Allowed) error](#2-when-an-option-request-is-made-i-get-options-405-method-not-allowed-error)
     - [Root cause](#root-cause-6)
-    - [Solution](#solution-6)
+    - [Solution](#solution-7)
 
 ## On-chain Proposal
 
 ### 1. Why send tx failed?
 
 * Reason 1: The gnfd binary doesn't match, you should use the [latest version](https://github.com/bnb-chain/greenfield/releases/latest)
-* Reason 2: The chain ID doesn't match, you should specify the chain ID correctly. For Greenfield `mainnet` you should add `--chain-id "greenfield_1017-1"`; in `testnet`, you should add `--chain-id "greenfield_5600-1"`
+* Reason 2: The chain ID doesn't match, you should specify the chain ID correctly. For Greenfield `mainnet` you should add `--chain-id "greenfield_1017-1"`; for Greenfield `testnet`, you should add `--chain-id "greenfield_5600-1"`.
 
 ### 2. Why is Proposal Rejected?
 
@@ -56,7 +56,11 @@ If your proposal received less than 2/3 of `yes` votes from validators, your pro
 To query the failed reason, run the following command:
 
 ```shell
+#  Greenfield Mainnet
 ./gnfd query gov proposal <proposal-id> --node https://greenfield-chain-us.bnbchain.org:443
+
+# Greenfield Testnet
+./gnfd q gov proposal <proposal-id> --node https://gnfd-testnet-fullnode-tendermint-ap.bnbchain.org:443
 ```
 
 If you see the following message:
@@ -67,9 +71,9 @@ failed_reason: 'spendable balance 999009992000000000000BNB is smaller than 10000
 
 It means the proposal initiator should be the funding address, and it should have balance of **1k BNB** as deposit.
 
-## SP node issues
+## SP Node Issues
 
-### 1. Address not found issue
+### 1. Address Not Found Issue
 
 #### Description
 
@@ -217,11 +221,11 @@ default error msg : <html>
 
 Nginx does not support large file
 
-#### Solutiion
+#### Solution
 
 Enlarge `proxy-boody-size`
 
-## DCellar Integration issues
+## DCellar Integration Issues
 
 ### 1. No 'Access-Control-Allow-Origin' header is present on the requested resource
 
@@ -229,7 +233,6 @@ Error:
 
 ```shell
 Access to XMLHttpRequest at 'https://fbgtest.gnfd-testnet-sp.fbgx.ai/?read-quota&year-month=2023-07' from origin 'https://dcellar.io' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-
 ```
 
 #### Solution

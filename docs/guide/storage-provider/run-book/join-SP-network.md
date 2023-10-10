@@ -1,36 +1,65 @@
 ---
-title: Join Greenfield SP Mainnet
+title: Join Greenfield SP Network
 ---
 
-This guide will help you join Greenfield SP Mainnet.
+This guide will help you join Greenfield SP Network: Mainnet and Testnet.
 
-- [Add Storage Provider to Greenfield Mainnet](#add-storage-provider-to-greenfield-mainnet)
-  - [1. Submit-proposal](#1-submit-proposal)
-    - [Understanding the parameters](#understanding-the-parameters)
-  - [2. Deposit BNB to proposal](#2-deposit-bnb-to-proposal)
-  - [3. Wait voting and check voting result](#3-wait-voting-and-check-voting-result)
+- [How to Join SP Network?](#how-to-join-sp-network)
+  - [1. Submit Proposal](#1-submit-proposal)
+    - [Hot Wallet Manual](#hot-wallet-manual)
+    - [Hardware Wallet Manual](#hardware-wallet-manual)
+    - [Understanding the Parameters](#understanding-the-parameters)
+  - [2. Deposit BNB to Proposal](#2-deposit-bnb-to-proposal)
+  - [3. Wait Voting and Check Voting Result](#3-wait-voting-and-check-voting-result)
   - [4. Activate SP](#4-activate-sp)
     - [Storage Provider Standard Test](#storage-provider-standard-test)
     - [Update SP status](#update-sp-status)
 - [Storage Provider Operations](#storage-provider-operations)
   - [EditStorageProvider](#editstorageprovider)
-  - [Update SP quota](#update-sp-quota)
+  - [Update SP Price](#update-sp-price)
+  - [Update SP Quota](#update-sp-quota)
 - [Tools](#tools)
-- [Trouble shooting](#trouble-shooting)
+- [Trouble Shooting](#trouble-shooting)
 
-## Add Storage Provider to Greenfield Mainnet
+## How to Join SP Network?
 
 Greenfield Blockchain validators are responsible for selecting storage providers. For each on-chain proposal to add new storage provider, there are deposit period for depositing BNB and voting period for validators to make votes. Once the proposal passes, new SP can join the network afterwards.
 
-You can query the governance parameters [here](https://docs.bnbchain.org/greenfield-docs/docs/greenfield-api/gov-v-1-params)
+You can query the governance parameters [here](https://docs.bnbchain.org/greenfield-docs/docs/greenfield-api/gov-v-1-params).
 
-### 1. Submit-proposal
+### 1. Submit Proposal
 
 The SP needs to initiate an on-chain proposal that specifies the Msg information to be automatically executed after the vote is approved. In this case, the Msg is `MsgCreateStorageProvider`. It's worth noting that the deposit tokens needs to be greater than the minimum deposit tokens specified on the chain.
 
-```shell
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-./build/bin/gnfd tx sp create-storage-provider ./create_storage_provider.json --from {funding_address} --print-eip712-msg-type
+<Tabs
+defaultValue="mainnet"
+values={[
+{label: 'Mainnet', value: 'mainnet'},
+{label: 'Testnet', value: 'testnet'},
+]}>
+  <TabItem value="mainnet">
+
+    rpcAddr = "https://greenfield-chain.bnbchain.org:443"
+    chainId = "greenfield_1017-1"
+
+  </TabItem>
+  <TabItem value="testnet">
+
+    rpcAddr = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
+    chainId = "greenfield_5600-1"
+  </TabItem>
+</Tabs>
+
+#### Hot Wallet Manual
+
+You can use the gnfd command to send the create storage provider transaction directly if you import your funding private key into the Keystore. However, this is not safe enough to use a hot wallet for Mainnet, so you can follow the [Hardware Wallet Manual](#hardware-wallet-manual) when you use a hardware wallet.
+
+```shell
+Example:
+./build/bin/gnfd tx sp create-storage-provider ./create_storage_provider.json --from {funding_address} --node ${rpcAddr} --chain-id ${chainId} --keyring-backend os
 
 # create_storage_provider.json
 $ cat ./create_storage_provider.json
@@ -54,6 +83,7 @@ $ cat ./create_storage_provider.json
     "endpoint":"https://{your_endpoint}",
     "deposit":{
       "denom":"BNB",
+      # Mainnet: 500000000000000000000, Testnet: 1000000000000000000000
       "amount":"500000000000000000000"
     },
     "read_price":"0.1469890427",
@@ -71,31 +101,25 @@ $ cat ./create_storage_provider.json
 }
 ```
 
-:::note
-In testnet, there are some differences in create_storage_provider.json:
+#### Hardware Wallet Manual
 
-```json
-...
-"deposit":{
-      "denom":"BNB",
-      "amount":"1000000000000000000000"
-    },
-"read_price":"0.108",
-"store_price":"0.016",
-"free_read_quota": 1073741824,
-...
+The gnfd command is not available for connecting with the hardware wallet, so you should use the [gnfd-tx-sender](https://gnfd-tx-sender.nodereal.io/) to send transactions. Here are the steps:
+
+1. Generate the Input Data(use the `--print-eip712-msg-type` command).
+
+```shell
+Example:
+./build/bin/gnfd tx sp create-storage-provider ./create_storage_provider.json --print-eip712-msg-type
 ```
 
-Tendermint RPC address in testnet is `https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443`, users can fill this address in `--node` flag.
-:::
-
-After executing the following command, you will get a JSON input in your terminal, you can save it as a JSON file.
-
-Next you visit this website: `https://gnfd-tx-sender.nodereal.io/`, connect your wallet, choose `Custom Tx`, fill the JSON data and submit:
+2. Visit [gnfd-tx-sender](https://gnfd-tx-sender.nodereal.io/).
+3. Add your hardware wallet into Metamask, connect the wallet
+4. Click `Custom Tx` page and fill in the related input data.
+5. Send the transaction.
 
 ![submit proposal](../../../../static/asset/019-submit-proposal.jpg)
 
-#### Understanding the parameters
+#### Understanding the Parameters
 
 :::note
 You can get the gov module address by this command
@@ -112,7 +136,7 @@ curl -X GET "https://greenfield-chain-us.bnbchain.org/cosmos/auth/v1beta1/module
 - `creator` is the address of `gov module`
 - `metadata` is optional
 
-### 2. Deposit BNB to proposal
+### 2. Deposit BNB to Proposal
 
 :::note
 You can get the mininum deposit for proposal by the above command. Please make sure that the initial deposit is greater than `min_deposit` when submitting the proposal.
@@ -128,10 +152,11 @@ You can skip this step if the initial deposit amount is greater than the min dep
 Each proposal needs to deposit enough tokens to enter the voting phase.
 
 ```shell
-./build/bin/gnfd tx gov deposit {proposal_id} 1BNB --from {funding_address} --keyring-backend os --node https://greenfield-chain-us.bnbchain.org:443 --chain-id "greenfield_1017-1"
+Example:
+$ ./build/bin/gnfd tx gov deposit ${proposal_id} 1BNB --from ${funding_address} --keyring-backend os --node https://greenfield-chain.bnbchain.org:443 --chain-id greenfield_1017-1
 ```
 
-### 3. Wait voting and check voting result
+### 3. Wait Voting and Check Voting Result
 
 After submitting the proposal successfully, you must wait for the voting to be completed and the proposal to be approved. It will last **7 days** on mainnet while **1 day** on mainnet. Once it has passed and is executed successfully, you can verify that the storage provider has been joined.
 
@@ -144,13 +169,15 @@ Please ensure that the storage provider service is running before it has been jo
 You can check the on-chain SP information to confirm whether the SP has been successfully created.
 
 ```shell
-./build/bin/gnfd query sp storage-providers --node https://greenfield-chain-us.bnbchain.org:443
+Example:
+$ ./build/bin/gnfd query sp storage-providers --node https://greenfield-chain.bnbchain.org:443 --chain-id greenfield_1017-1
 ```
 
 Alternatively, you can check the proposal to know about its execution status.
 
 ```shell
-./build/bin/gnfd query gov proposal {proposal_id} --node https://greenfield-chain-us.bnbchain.org:443
+Example:
+$ ./build/bin/gnfd query gov proposal ${proposal_id} --node https://greenfield-chain.bnbchain.org:443 --chain-id greenfield_1017-1
 ```
 
 ### 4. Activate SP
@@ -176,22 +203,41 @@ Refer to [Maintenance Mode](../../core-concept/storage-provider-lifecycle.md#in-
 This command is used to edit the information of the SP, including endpoint, description and .etc.
 
 ```shell
-gnfd tx sp edit-storage-provider [sp-address] [flags]
+Usage:
+  gnfd tx sp edit-storage-provider [sp-address] [flags]
 
-cd greenfield/
-./build/bin/gnfd tx sp edit-storage-provider ${operator_address} --node https://greenfield-chain-us.bnbchain.org:443
+Example:
+$ ./build/bin/gnfd tx sp edit-storage-provider ${operator_address} --from ${operator_address} --node https://greenfield-chain.bnbchain.org:443 --chain-id greenfield_1017-1
 ```
 
-### Update SP quota
+### Update SP Price
+
+Update the storage provider read, store price and free read quota, if there is no change to a specific value, the current value should also be provided.
+
+The unit of price is a decimal, which indicates wei BNB per byte per second.
+E.g. the price is 0.02183945725, means approximately $0.018 / GB / Month.
+`(0.02183945725 * (30 * 86400) * (1024 * 1024 * 1024) * 300 / 10 ** 18 ≈ 0.018, assume the BNB price is 300 USD)`
+
+The free-read-quota unit is bytes, for 1GB free quota, it is 1073741824.
+
+```shell
+Usage:
+  gnfd tx sp update-price [sp-address] [read-price] [store-price] [free-read-quota] [flags]
+
+Example:
+$ ./build/bin/gnfd tx sp update-price ${operator_address} 0.1469890427 0.02183945725 1073741824 --from ${operator_address} --keyring-backend os ---node https://greenfield-chain.bnbchain.org:443 --chain-id greenfield_1017-1
+```
+
+### Update SP Quota
 
 The update.quota command is used to update the free quota of the SP on greenfield chain, it will send a txn to the chain to finish the updating.
 
 ```shell
 gnfd-sp update.quota [command options] [arguments...]
 
-cd greenfield-storage-provider/build/
+Example:
 # config.toml is your mainnet config
-./gnfd-sp update.quota --quota ${value} --config config.toml
+$ ./gnfd-sp update.quota --quota 1000000000 --config ./config.toml
 ```
 
 ## Tools
@@ -201,6 +247,6 @@ SP can use Greenfield Cmd or DCellar to verify SP functions in Mainnet:
 - Greenfield Cmd: [repo](https://github.com/bnb-chain/greenfield-cmd)
 - DCellar: [website](https://dcellar.io/)
 
-## Trouble shooting
+## Trouble Shooting
 
 If you meet issues, please read [this doc](./common-issues).

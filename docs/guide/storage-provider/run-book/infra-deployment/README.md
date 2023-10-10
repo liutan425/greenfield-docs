@@ -12,7 +12,7 @@ Quick Start
 
 For details about what is "storage provider" on application level, please see
 https://docs.bnbchain.org/greenfield-docs/docs/guide/storage-provider/introduction/overview. This document focuses on AWS infra
-and Kubernetest deployment level.
+and Kubernetes deployment level.
 
 ## Pre-requisites (we assume you already have the following infrastructure)
 

@@ -1,8 +1,8 @@
 ---
-title: Run Mainnet SP Node
+title: Run SP Node
 ---
 
-This guide helps you to set up a Storage Provider and add it to Greenfield mainnet.
+This guide helps you set up an SP Node. Once you set up the SP Node successfully, you can follow the [Join SP Network guide](./join-SP-network.md) to make it online.
 
 - [Prerequisites](#prerequisites)
   - [Recommended Hardware](#recommended-hardware)
@@ -14,7 +14,7 @@ This guide helps you to set up a Storage Provider and add it to Greenfield mainn
     - [2. Cross Region Configuration](#2-cross-region-configuration)
 - [Create Storage Provider](#create-storage-provider)
   - [1. Compile SP](#1-compile-sp)
-  - [2. SP Mainnet Config](#2-sp-mainnet-config)
+  - [2. SP Config](#2-sp-config)
     - [Generate config template](#generate-config-template)
     - [Write config](#write-config)
   - [3. Run SP](#3-run-sp)
@@ -40,15 +40,15 @@ Each storage provider will hold 7 different accounts serving different purposes
 
 ### Wallet Preparation
 
-- Operator Account: Used to edit the information of the StorageProvider. Please make sure it has enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of `EditStorageProvider` and `UpdateStorageProviderStatus` transactions.
-- Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least **500+** BNB are required for staking. You should use this address to send `CreateValidator` proposal on-chain.
-- Seal Account: Used to seal the user's object. Please make sure it has enough BNB to pay the gas fee of `SealObject` transaction.
-- Approval Account: Used to approve user's requests. This account does not require holding BNB tokens.
-- GC Account: It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB tokens because it's going to keep sending transactions up the chain.
-- Maintenance Account: It is used for SP self-testing while in maintenance mode. This account for creating bucket and object will be allowed-listed by Chain while other users' create request will fail.
-- Bls Account: Used to create bls signature when sealing objects to ensure integrity, it does not need to be deposited.
+- `Operator Account`: Used to edit the information of the StorageProvider. Please make sure it has enough BNB to pay the gas fee of `EditStorageProvider` and `UpdateStorageProviderStatus` transactions.
+- `Funding Account`: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the SP must submit a deposit as a guarantee. At least `500+` BNB are required for staking. You should use this address to send `CreateStorageProvider` proposal on-chain. Besides the `500BNB` for staking, the funding address should have enough tokens for creating VGF to store more data, so we suggest depositing at least `510BNB` into this account.
+- `Seal Account`: Used to seal the user's object. Please make sure it has enough BNB to pay the gas fee of `SealObject` transaction. We suggest depositing `10BNB` into this account.
+- `Approval Account`: Used to approve user's requests. This account does not require holding BNB tokens.
+- `GC Account`: It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB tokens because it's going to keep sending transactions up the chain.
+- `Maintenance Account`: It is used for SP self-testing while in maintenance mode. This account for creating bucket and object will be allowed-listed by Chain while other users' create request will fail.
+- `Bls Account`: Used to create bls signature when sealing objects to ensure integrity, it does not need to be deposited.
 
-You can use the below command to generate these seven accounts:
+There are six accounts below, you can use the below command to generate these accounts:
 
 ```shell
 ./build/bin/gnfd keys add operator --keyring-backend os
@@ -91,7 +91,7 @@ maintenance account is not needed for SP deployment, but you should export it to
 
 Please keep these seven private keys safe!
 
-Also, obtain bls public key, bls proof to fill in the proposal of creating Storage Provider
+Moreover, obtain bls public key and generate bls proof to fill in the proposal of creating Storage Provider
 
 `bls_pub_key`:
 
@@ -102,6 +102,7 @@ Also, obtain bls public key, bls proof to fill in the proposal of creating Stora
 `bls_proof`:
 
 ```shell
+# Replace the ${bls_pub_key} with the above bls_pub_key to ensure sign the correct bls pub key!!!
 ./build/bin/gnfd keys sign "${bls_pub_key}" --from bls --keyring-backend os
 ```
 
@@ -140,7 +141,7 @@ Please follow this [doc](./piece-store) to config your PieceStore.
 
 You need certificates for SP's exposed gateway service domain name and wildcard subdomain name of it, say you exposed your SP's gateway service on `https://my-sp1.mainnet.dummy-sp.io`, then you need SSL certificates for both `my-sp1.mainnet.dummy-sp.io` and `*.my-sp1.mainnet.dummy-sp.io`.
 For instance, if you reqeust AWS ACM certificate, you could request with this:
-![SP AWS ACM CERT](../../../../static/asset/407-SP-AWS-ACM-Cert.jpg)
+![SP AWS ACM CERT](../../../../static/asset/407-SP-AWS-ACM-Cert.png)
 
 Also, route all traffic from both `my-sp1.mainnet.dummy-sp.io` and `*.my-sp1.mainnet.dummy-sp.io` to gateway service, for instance, if you use nginx for ingress control, then you'll need to configure rules look like the following:
 
@@ -200,9 +201,9 @@ After you finish the configuration, you can verify if it works in DCellar.
 
 ### 1. Compile SP
 
-[Compile SP doc](./compile-dependences.md#compile-sp).
+Follow the [Compile SP](./compile-dependences.md#compile-sp) doc to compile the SP binary or you can download the binary from the [Greenfield Storage Provider Release](https://github.com/bnb-chain/greenfield-storage-provider/releases).
 
-### 2. SP Mainnet Config
+### 2. SP Config
 
 #### Generate config template
 

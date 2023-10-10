@@ -198,7 +198,7 @@ Usage: deployment/localup/localup.sh [option...] {help|generate|reset|start|stop
 
 ## Operate With SP
 
-If you have already started Greenfield blockchain and Greenfield SP successfully in local, you can use Greenfield Cmd to operate with SP such as CreateBucket, PutObject and GetObject. Detailed info about Greenfield Cmd can be found [here](../../getting-started/).
+If you have already started Greenfield blockchain and Greenfield SP successfully in local, you can use Greenfield Cmd to operate with SP such as CreateBucket, PutObject and GetObject. Detailed info about Greenfield Cmd can be found [here](../../getting-started/greenfield-command.md).
 
 :::tip
 We strongly recommend you reading [Greenfield Cmd](https://github.com/bnb-chain/greenfield-cmd). It will help you explore the functions of Greenfield blockchain and SP.
