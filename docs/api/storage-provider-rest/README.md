@@ -25,17 +25,22 @@ For `GNFD1-EDDSA` auth type, Greenfield SP RESTful APIs use `Edwards-curve Digit
 - [gnark-crypto] https://github.com/Consensys/gnark-crypto/tree/master/ecc/bn254/fr/mimc
 
 ### The step of generating authorization header
+1. Add a `X-Gnfd-Expiry-Timestamp` header into request, to define the expiry timestamp for the generated signature in the authorization headers.
+   It defines the Expiry-Date is the ISO 8601 datetime string (e.g. 2021-09-30T16:25:24Z), used to register the EDDSA public key. This expiry date should be future timestamp but within **7 days** since now.
 
-1. Create a canonical request
+   See example code at:
+   https://github.com/bnb-chain/greenfield-go-sdk/blob/e6b5db6bf98e6b9b6a7a20be39d6342381a9ccd4/client/api_client.go#L426-L430
+
+2. Create a canonical request
 Create a canonical request by concatenating the following strings, separated by newline characters. This helps ensure that the signature that you calculate and the signature that Greenfield SP calculates can match.
 
-```shell
-HTTPMethod
-CanonicalUri
-CanonicalQueryString
-CanonicalHeaders
-SignedHeaders
-```
+   ```shell
+   HTTPMethod
+   CanonicalUri
+   CanonicalQueryString
+   CanonicalHeaders
+   SignedHeaders
+   ```
 
 - HTTPMethod: The HTTP method.
 - CanonicalUri: The URI-encoded version of the absolute path component URL (everything between the host and the question mark character (?) that starts the query string parameters). If the absolute path is empty, use a forward slash character `/`.
@@ -43,18 +48,24 @@ SignedHeaders
 - CanonicalHeaders – The request headers, that will be signed, and their values, separated by newline characters. Header names must use lowercase characters, must appear in alphabetical order, and must be followed by a colon `:`. For the values, trim any leading or trailing spaces, convert sequential spaces to a single space, and separate the values for a multi-value header using commas. You must include the host header (HTTP/1.1) or any x-gnfd-* headers in the signature. You can optionally include other standard headers in the signature, such as content-type.
 - SignedHeaders – The list of headers that you included in CanonicalHeaders, separated by semicolons `;`. This indicates which headers are part of the signing process. Header names must use lowercase characters and must appear in alphabetical order.
 
-2. Create a hash of the canonical request
-First create a hash (digest) of the canonical request using `sha256` algorithm. The hash of the canonical request is a slice of byte. Second use `Keccak256` algorithm to get Keccak256 hash and convert this to lowercase hexadecimal characters.
+   See example code at:
+   https://github.com/bnb-chain/greenfield-common/blob/8bcfd1ccaf6a8ffc3404abc48260d1f4c7f436b2/go/http/gen_sign_str.go#L75-L86
 
-3. Calculate the signature
+3. Create a hash of the canonical request
+The hash of the canonical request is a slice of byte. Second use `Keccak256` algorithm to get Keccak256 hash.
+
+   See example code at:
+   https://github.com/bnb-chain/greenfield-common/blob/8bcfd1ccaf6a8ffc3404abc48260d1f4c7f436b2/go/http/gen_sign_str.go#L100-L102
+
+4. Calculate the signature
 After you create the string to sign, you are ready to calculate the signature for the authentication information that you'll add to your request. Use your private key, [secp256k1](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/secp256k1) to generate Signature.And you should convert this to lowercase hexadecimal characters.
 
-SP verifies the Authorization signature content to obtain the sender's address and check the sender's permission.
-- For auth type `GNFD1-ECDSA`  
-[Ethereum-secp256k1](https://github.com/ethereum/go-ethereum/tree/master/crypto/secp256k1) lib provides two functions: RecoverPubkey and VerifySignature that helps recover user address and whether data has been tampered with.
+   SP verifies the Authorization signature content to obtain the sender's address and check the sender's permission.
+   - For auth type `GNFD1-ECDSA`  
+   [Ethereum-secp256k1](https://github.com/ethereum/go-ethereum/tree/master/crypto/secp256k1) lib provides two functions: RecoverPubkey and VerifySignature that helps recover user address and whether data has been tampered with.
 
-- For auth type `GNFD1-EDDSA`  
-[gnark-crypto] (https://github.com/Consensys/gnark-crypto/blob/master/ecc/bn254/twistededwards/eddsa/eddsa.go#L189) lib provides a Verify function that helps recover if users' signature matches their public key registered in SP previously.
+   - For auth type `GNFD1-EDDSA`  
+   [gnark-crypto] (https://github.com/Consensys/gnark-crypto/blob/master/ecc/bn254/twistededwards/eddsa/eddsa.go#L189) lib provides a Verify function that helps recover if users' signature matches their public key registered in SP previously.
 
 ### Authorization header example
 #### For auth type `GNFD1-ECDSA`
@@ -63,6 +74,7 @@ Authorization = auth_type + "," + Signature
 string-to-sign = crypto.Keccak256(canonical)
 Signature = privateKey.secp256k1-Sign(string-to-sign)
 Authorization: GNFD1-ECDSA, Signature=53e2f098411c5df46b71111337a5cf48bf254ba4a8516996445626619c4f10ac57a5ba081154272ed9e0334a338db39bf74f6de0f3c252fd27890fb81cffd29d00
+X-Gnfd-Expiry-Timestamp: 2023-10-18T03:20:04Z
 ```
 
 #### For auth type `GNFD1-EDDSA`
@@ -71,6 +83,7 @@ Authorization = auth_type + "," + Signature
 string-to-sign = crypto.Keccak256(canonical)
 Signature = privateKey.EdDSA-Sign(string-to-sign)
 Authorization: GNFD1-ECDSA, Signature=9dac5eeaca7fb65265528773e11819cb9980cd9be68eebe8a10dea643f265c8302887f014eb78c3249c05d1038e81f93b4253a298cd9edf18982345c394ba9fb
+X-Gnfd-Expiry-Timestamp: 2023-10-18T03:20:04Z
 ```
 
 
