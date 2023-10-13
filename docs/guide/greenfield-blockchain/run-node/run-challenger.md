@@ -3,6 +3,9 @@ title: Run Challenger
 order: 6
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Prerequisites
 
 ### Recommended Hardware
