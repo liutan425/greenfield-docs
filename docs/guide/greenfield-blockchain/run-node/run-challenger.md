@@ -59,11 +59,12 @@ Reference for a complete [config file](https://github.com/bnb-chain/bnb-chain-ch
         ...
      }
    ```
-   
-Note:
+
+:::note
 The term `private_key` refers to the private key of the `validator_challenger` account, while `bls_private_key` refers
 to the private key of the `validator_bls` account. To obtain these private keys, you can follow the instructions
 provided in the [key preparation](#key-preparation) section.
+:::
 
 2. Set your RPC Address and Chain ID    
 
