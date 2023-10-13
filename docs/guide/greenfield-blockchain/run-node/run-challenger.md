@@ -66,7 +66,25 @@ validator_challenger=$(gnfd keys export validator_challenger --unarmored-hex --u
 validator_bls=$(gnfd keys export validator_bls --unarmored-hex --unsafe --keyring-backend test)
 ```
 
-2. Config your database settings.
+2. Set your RPC Address and Chain ID    
+
+<Tabs>
+<TabItem value="mainnet" label="Mainnet">
+
+	rpcAddr = "https://greenfield-chain.bnbchain.org:443"
+    chainId = "greenfield_1017-1"
+
+</TabItem>
+<TabItem value="testnet" label="Testnet">
+
+	rpcAddr = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
+    chainId = "greenfield_5600-1"
+
+</TabItem>
+</Tabs>
+
+
+3. Config your database settings.
 
    ```
    "db_config": {
