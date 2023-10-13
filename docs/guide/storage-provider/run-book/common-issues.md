@@ -1,16 +1,51 @@
 ---
 title: SP Common Issues
-order: 5
 ---
 
 This is a list of solutions to common SP deployment issues
+
+- [On-chain Proposal](#on-chain-proposal)
+  - [1. Why send tx failed?](#1-why-send-tx-failed)
+  - [2. Why is Proposal Rejected?](#2-why-is-proposal-rejected)
+  - [3. Why is Proposal Failed](#3-why-is-proposal-failed)
+- [SP Node Issues](#sp-node-issues)
+  - [1. Address Not Found Issue](#1-address-not-found-issue)
+    - [Description](#description)
+    - [Root Cause](#root-cause)
+    - [Solution](#solution)
+  - [2. Database Configuration Issue](#2-database-configuration-issue)
+    - [Description](#description-1)
+    - [Root Cause](#root-cause-1)
+    - [Solution](#solution-1)
+  - [3. Object Sealed State Issue](#3-object-sealed-state-issue)
+    - [Description](#description-2)
+    - [Root Cause](#root-cause-2)
+    - [Solution](#solution-2)
+  - [4. P2P Issue](#4-p2p-issue)
+    - [Description](#description-3)
+    - [Root Cause](#root-cause-3)
+    - [Solution](#solution-3)
+  - [5.MinIO Authentication Issue](#5minio-authentication-issue)
+    - [Description](#description-4)
+    - [Root Cause](#root-cause-4)
+    - [Solution](#solution-4)
+  - [6. SP Standard Test Issue](#6-sp-standard-test-issue)
+    - [Description](#description-5)
+    - [Root Cause](#root-cause-5)
+    - [Solution](#solution-5)
+- [DCellar Integration Issues](#dcellar-integration-issues)
+  - [1. No 'Access-Control-Allow-Origin' header is present on the requested resource](#1-no-access-control-allow-origin-header-is-present-on-the-requested-resource)
+    - [Solution](#solution-6)
+  - [2. when an OPTION request is made, I get OPTIONS 405 (Method Not Allowed) error](#2-when-an-option-request-is-made-i-get-options-405-method-not-allowed-error)
+    - [Root cause](#root-cause-6)
+    - [Solution](#solution-7)
 
 ## On-chain Proposal
 
 ### 1. Why send tx failed?
 
 * Reason 1: The gnfd binary doesn't match, you should use the [latest version](https://github.com/bnb-chain/greenfield/releases/latest)
-* Reason 2: The chain ID doesn't match, you should specify the chain ID correctly. For greenfield testnet, you should add `--chain-id "greenfield_5600-1"`
+* Reason 2: The chain ID doesn't match, you should specify the chain ID correctly. For Greenfield `mainnet` you should add `--chain-id "greenfield_1017-1"`; for Greenfield `testnet`, you should add `--chain-id "greenfield_5600-1"`.
 
 ### 2. Why is Proposal Rejected?
 
@@ -19,18 +54,26 @@ If your proposal received less than 2/3 of `yes` votes from validators, your pro
 ### 3. Why is Proposal Failed
 
 To query the failed reason, run the following command:
-```
+
+```shell
+#  Greenfield Mainnet
+./gnfd query gov proposal <proposal-id> --node https://greenfield-chain-us.bnbchain.org:443
+
+# Greenfield Testnet
 ./gnfd q gov proposal <proposal-id> --node https://gnfd-testnet-fullnode-tendermint-ap.bnbchain.org:443
 ```
-If you see the following message: 
-```
+
+If you see the following message:
+
+```shell
 failed_reason: 'spendable balance 999009992000000000000BNB is smaller than 1000000000000000000000BNB:
 ```
+
 It means the proposal initiator should be the funding address, and it should have balance of **1k BNB** as deposit.
 
-## SP node issues
+## SP Node Issues
 
-### 1. Address not found issue
+### 1. Address Not Found Issue
 
 #### Description
 
@@ -89,11 +132,11 @@ From SP log, you see the following:
 
 #### Root Cause
 
-`Seal address` does not have enough BNB to sign seal transactions
+`SealAddress` does not have enough BNB to sign seal transactions
 
 #### Solution
 
-Transfer BNB to `Seal address`.
+Transfer BNB to `SealAddress`.
 
 ### 4. P2P Issue
 
@@ -102,7 +145,6 @@ Transfer BNB to `Seal address`.
 After starging SP binary, you see an error message:
 
 ```shell
-
 failed to parse address 'k8s-gftestne-p2pexter-bc25ac70bc-a31e9596d87054c3.elb.us-east-1.amazonaws.com:9933' domain
 ```
 
@@ -154,8 +196,7 @@ You can refer [here](./piece-store.md#minio).
 
 #### Description
 
-```
-
+```html
 2023/07/26 19:06:03.543395 [INFO] GID 41, Uploading file - object: 2q4l5v4v3z, bucket: sc1bw
 default error msg : <html>
 <head><title>413 Request Entity Too Large</title></head>
@@ -180,29 +221,29 @@ default error msg : <html>
 
 Nginx does not support large file
 
-#### Solutiion
+#### Solution
 
 Enlarge `proxy-boody-size`
 
-## dCellar Integration issues
+## DCellar Integration Issues
 
-### 1. No 'Access-Control-Allow-Origin' header is present on the requested resource.
+### 1. No 'Access-Control-Allow-Origin' header is present on the requested resource
 
 Error:
 
-```
+```shell
 Access to XMLHttpRequest at 'https://fbgtest.gnfd-testnet-sp.fbgx.ai/?read-quota&year-month=2023-07' from origin 'https://dcellar.io' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-
 ```
 
 #### Solution
 
 Add these headers
-```
+
+```http
 Access-Control-Allow-Credentials:
 true
 Access-Control-Allow-Headers:
-DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,X-Gnfd-Unsigned-Msg,X-Gnfd-Txn-Hash,Date,X-Gnfd-Object-ID,X-Gnfd-Piece-Index,X-Gnfd-Redundancy-Index,Address,X-Gnfd-User-Address,X-Gnfd-App-Domain,X-Gnfd-App-Reg-Nonce,X-Gnfd-App-Reg-Public-Key,X-Gnfd-Expiry-Timestamp
+Access-Control-Allow-Headers: DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-MD5,Range,Authorization,X-Gnfd-Content-Sha256,X-Gnfd-Unsigned-Msg,X-Gnfd-Txn-Hash,Date,X-Gnfd-Object-ID,X-Gnfd-Resource,X-Gnfd-Piece-Index,X-Gnfd-Redundancy-Index,Address,X-Gnfd-User-Address,X-Gnfd-App-Domain,X-Gnfd-App-Reg-Nonce,X-Gnfd-Date,X-Gnfd-App-Reg-Public-Key,X-Gnfd-App-Reg-Expiry-Date,X-Gnfd-Expiry-Timestamp
 Access-Control-Allow-Methods:
 GET, PUT, POST, DELETE, PATCH, OPTIONS
 Access-Control-Allow-Origin:
@@ -213,7 +254,7 @@ Access-Control-Max-Age:
 1728000
 ```
 
-### 2. when an OPTION request is made, I get OPTIONS 405 (Method Not Allowed) error.
+### 2. when an OPTION request is made, I get OPTIONS 405 (Method Not Allowed) error
 
 #### Root cause
 

@@ -16,7 +16,7 @@ First, the storage provider needs to learn how to run and create a storage provi
 - Run all services of Storage Provider
 
 :::note
-For more information, please see [Run TestNet Storage Provider](../storage-provider/run-book/run-testnet-SP-node.md)
+For more information, please see [Run Storage Provider](../storage-provider/run-book/run-SP-node.md)
 :::
 
 ## Proposal
@@ -42,7 +42,7 @@ Below are the required fields that need to be modified in the proposal:
   - The proposal itself must have a deposit of at least 1 BNB in the testnet.
 
 :::note
-For more information, please see [Add Storage Provider to greenfield network](../storage-provider/run-book/run-testnet-SP-node.md#add-storage-provider-to-greenfield-testnet)
+For more information, please see [Add Storage Provider to Greenfield Network](../storage-provider/run-book/join-SP-network.md)
 :::
 
 Initiating this on-chain proposal with the necessary modifications and deposits is a crucial step for the SP to become an active participant in the Greenfield network, offering reliable and secure storage services to users. By complying with the proposal requirements, the SP can enhance its reputation and attract more users, contributing to the growth and success of the decentralized storage ecosystem.
@@ -87,7 +87,7 @@ To ensure the quality of service provided, we strongly recommend that SPs conduc
 
 At some point, the SP may choose to voluntarily exit the Greenfield storage network for various reasons. Ensuring a graceful exit process is crucial to ensure a seamless transition of responsibilities and data to other SPs. During the exit process, the SP has the option to withdraw its staked tokens, but this withdrawal may be subject to any penalties or obligations associated with the exit.
 
-To execute a graceful exit, the SP needs to migrate all its stored data to other SPs that are willing to take over. This data migration process involves transferring data from the exiting SP to the new SP in a secure and efficient manner. The exiting SP initiates this migration by sending a `SwapOut` transaction to the Greenfield Blockchain, formally withdrawing from the respective Global Virtual Group (GVG) or GVG Family. Simultaneously, the SP will receive back its staking tokens for data storage, ensuring a fair settlement. 
+To execute a graceful exit, the SP needs to migrate all its stored data to other SPs that are willing to take over. This data migration process involves transferring data from the exiting SP to the new SP in a secure and efficient manner. The exiting SP initiates this migration by sending a `SwapOut` transaction to the Greenfield Blockchain, formally withdrawing from the respective Global Virtual Group (GVG) or GVG Family. Simultaneously, the SP will receive back its staking tokens for data storage, ensuring a fair settlement.
 
 Once the successor SP successfully takes over all data in a GVG or GVG Family, it will send a `CompleteSwapOut` transaction to the Greenfield Blockchain, confirming the completion of the data transfer process.
 

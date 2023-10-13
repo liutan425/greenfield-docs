@@ -16,13 +16,13 @@ IAM role
 * Bind K8S service account to this IAM role
 ![4](../../../../../../static/asset/016-AWS-IAM-K8s-Role-Trust-Relationship.png "IAM Role Trust Relationship")
 
-
 Database (RDS)
 --------------
 
 * Create RDS database and jot down the connection string, username and password.
 ![5](../../../../../../static/asset/016-AWS-RDS.png)
 after RDS created, need to init DB by creating databse:
+
 1. db storage_provider_db
 2. db block_syncer
 3. db block_syncer_backup
@@ -33,7 +33,6 @@ S3 Bucket
 * Create S3 bucket
 ![6](../../../../../../static/asset/016-AWS-S3.png)
 
-
 Secret Manager
 --------------
 
@@ -41,6 +40,7 @@ Secret Manager
 ![7](../../../../../../static/asset/016-AWS-Secret-Manager.png)
 
 * Update secret value
+
 ```json
 {
     "SP_DB_USER":"xxx",

@@ -1,12 +1,12 @@
 ---
 title: Run Local SP Network
-order: 2
 ---
+
 This guide helps you to set up a local Greenfield Storage Provider network for testing
 and other development related purposes.
 
 - [Recommended Prerequisites](#recommended-prerequisites)
-- [Quickly setup local Greenfield Blockchain network](#quickly-setup-local-greenfield-blockchain-network)
+- [Quickly setup local Greenfield blockchain network](#quickly-setup-local-greenfield-blockchain-network)
 - [Setup local SP network](#setup-local-sp-network)
 - [Operate With SP](#operate-with-sp)
   - [1. Generate your test account](#1-generate-your-test-account)
@@ -17,12 +17,12 @@ and other development related purposes.
 
 The following lists the recommended hardware requirements:
 
-* VPS running recent versions of Mac OS X, Linux, or Windows；
-* 16 cores of CPU, 64 GB of memory(RAM);
-* At least 100GB disk space for backend storage;
-* 10GB+ SQL Database.
+- VPS running recent versions of Mac OS X, Linux, or Windows；
+- 16 cores of CPU, 64 GB of memory(RAM);
+- At least 100GB disk space for backend storage;
+- 10GB+ SQL Database.
 
-## Quickly setup local Greenfield Blockchain network
+## Quickly setup local Greenfield blockchain network
 
 1. Build Greenfield Blockchain
 
@@ -53,7 +53,7 @@ make: *** [build] Error 1
 bash ./deployment/localup/localup.sh all 1 8
 ```
 
-3. Export the keys of sps
+3. Export the keys of SPs
 
 ```shell
 bash ./deployment/localup/localup.sh export_sps 1 8
@@ -198,7 +198,7 @@ Usage: deployment/localup/localup.sh [option...] {help|generate|reset|start|stop
 
 ## Operate With SP
 
-If you have already started Greenfield blockchain and Greenfield SP successfully in local, you can use Greenfield Cmd to operate with SP such as CreateBucket, PutObject and DownloadObject. Detailed info about Greenfield Cmd can be found [here](https://github.com/bnb-chain/greenfield-cmd).
+If you have already started Greenfield blockchain and Greenfield SP successfully in local, you can use Greenfield Cmd to operate with SP such as CreateBucket, PutObject and GetObject. Detailed info about Greenfield Cmd can be found [here](../../getting-started/greenfield-command.md).
 
 :::tip
 We strongly recommend you reading [Greenfield Cmd](https://github.com/bnb-chain/greenfield-cmd). It will help you explore the functions of Greenfield blockchain and SP.
@@ -281,4 +281,4 @@ dd if=/dev/urandom of=./random_file bs=17M count=1
 
 Users can use md5 to compare your generated file and downloaded file whether is the same.
 
-Ok, we just show some basic functions here, you can explore more functions with [Greenfield Cmd](https://github.com/bnb-chain/greenfield-cmd).
+You can explore other functions of Greenfield Cmd.

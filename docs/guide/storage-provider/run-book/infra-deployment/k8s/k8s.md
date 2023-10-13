@@ -1,15 +1,13 @@
----
-title: K8S Resources
----
 # Create a SP cluster
 
 Pre-requisite is that AWS resources must first be created. Please see aws section for details.
 
 Then, using `kustomize`, you can create the app in K8S (EKS) very quickly.
 
-
 ## Cluster Size Selection
+
 We currently support a number of cluster modes, depending on the requirements of performance.
+
 1. all-in-one: All services of SP are deployed in a single pod.
 2. regular: An arrangement where some services will be combined as a pod.
 3. large: Each service is a pod by itself.
@@ -17,12 +15,11 @@ We currently support a number of cluster modes, depending on the requirements of
 ## Setting up K8S via kustomize
 
 To set up a primary SP cluster, using `kustomize` we can deploy it with the following YAML. You can
-replace the `value`s in the YAML file. 
+replace the `value`s in the YAML file.
 
-```
+```yaml
 resources:
   - https://github.com/node-real/greenfield-sp-k8s/base/cluster/large?ref=v0.2.16
-
 
 images:
 - name: ghcr.io/bnb-chain/greenfield-storage-provider
@@ -83,10 +80,10 @@ patches:
 
 ### Config file
 
-Here is the config file used in the above `configMapGenerator`. You will need to obtain and 
+Here is the config file used in the above `configMapGenerator`. You will need to obtain and
 replace `SpOperatorAddress`, `ChainID`, `GreenfieldAddresses` and `TendermintAddresses` from your env.
 
-```
+```toml
 # services list are to be started
 Service = ["gateway", "uploader", "downloader", "challenge", "tasknode", "receiver", "manager", "p2p", "auth", "stopserving"]
 
@@ -208,7 +205,6 @@ On = false
 RateLimit = 1
 RatePeriod = "S"
 ```
-
 
 ## Setting up secret
 
