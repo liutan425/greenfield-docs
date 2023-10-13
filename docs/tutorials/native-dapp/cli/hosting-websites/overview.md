@@ -23,10 +23,16 @@ In the case of BNB Greenfield, the decentralized network of storage providers co
 To start, create a separate bucket for your website on BNB Greenfield using the following command: 
 
 ```bash
-./gnfd-cmd bucket create gnfd://my-plato-website
+./gnfd-cmd bucket create --visibility=public-read gnfd://my-plato-website --primarySP 0x231099e40E1f98879C4126ef35D82FF006F24fF2
 ```
 
-Make a note of the primary service provider (SP) address, as it may be required later. 
+The example return message is like the following:
+```
+make_bucket: my-plato-website
+transaction hash:  E083FB2647D0A53640B63AD1DB8EFA0E1C5CC05454C0774E3DB2A4822E73D423
+```
+
+You can verify the transaction in explorer [here](https://greenfieldscan.com/tx/E083FB2647D0A53640B63AD1DB8EFA0E1C5CC05454C0774E3DB2A4822E73D423).
 
 ### Uploading Supporting Files
 
@@ -83,7 +89,16 @@ Upload the modified index.html file to your bucket using the following command:
 gnfd://my-plato-website/index.html 
 ```
 
-Now, let's eagerly click the link to view our brand new website at https://gnfd-testnet-sp-2.bnbchain.org/view/my-plato-website/index.html and feel the anticipation building up. 
+Example output:
+```
+object index.html created on chain
+transaction hash:  20921F3C1DBE3F911217CE82BDC9DC2A745AF61912651A5F9D80F10989A8FC20
+
+sealing...
+upload index.html to gnfd://my-plato-website/index.html
+```
+
+Now, let's eagerly click the link to view our brand new website at https://gnfd-testnet-sp1.bnbchain.org/view/my-plato-website/index.html and feel the anticipation building up.
 
 🥁Drum beat... 
 
@@ -96,7 +111,7 @@ However, let's not forget that BNB Greenfield is an immutable storage. So to upd
 To accomplish this, I used the power of the 'object delete' command: 
 
 ```bash
-./gnfd-cmd object delete gnfd://my-plato-website/index.html 
+./gnfd-cmd object rm gnfd://my-plato-website/index.html
 ```
 
 Wait for the confirmation that the file was successfully deleted, accompanied by a transaction hash: 4B12BCF26525C1B661389529524DF14E23164D000FA47FB2E0D0BE26B131E04A.
@@ -112,8 +127,8 @@ And reupload the html file, this time accompanied by the content-type flag:
 Oh, no! The website still looks horrendous, and worse yet, the image of Plato is nowhere to be found. Frustration turned into disappointment as we discovered that the browser was throwing an error due to an incorrect MIME type. It refused to apply the styles from https://gnfd-testnet-sp-2.bnbchain.org/view/my-plato-website/styles.css because the MIME type was set as 'text/plain', which is not a supported stylesheet MIME type when strict MIME checking is enabled.
 Fear not! The error looks familiar and we already know exactly what needed to be done. So swiftly deleting the problematic files and reuploading them correctly this time:
 ```bash
-./gnfd-cmd object delete gnfd://my-plato-website/plato.jpg
-./gnfd-cmd object delete gnfd://my-plato-website/styles.css
+./gnfd-cmd object rm gnfd://my-plato-website/plato.jpg
+./gnfd-cmd object rm gnfd://my-plato-website/styles.css
 ```
 And then, with a determined spirit:
 ```bash
@@ -127,7 +142,7 @@ And finally, we heard the triumphant sound of trumpets!
 
 ![Plato Website](website-example.png)
 
-However, as we gaze upon the site, we can't help but admit that it doesn't look particularly astonishing. It falls short of our grandest expectations. Yet, considering that we generated and uploaded it in just a matter of minutes, it's still a decent outcome given our investment of time and effort.
+However, as we gaze upon [the site](https://greenfield-sp.bnbchain.org/view/my-plato-website/index.html), we can't help but admit that it doesn't look particularly astonishing. It falls short of our grandest expectations. Yet, considering that we generated and uploaded it in just a matter of minutes, it's still a decent outcome given our investment of time and effort.
 
 The content and image look good though, it just needs more love with styling…but that’s a story for another tutorial.
 
