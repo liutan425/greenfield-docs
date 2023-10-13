@@ -40,7 +40,7 @@ cd greenfield-challenger
 Modify `config/config.json`. Or, you can create a new one and specify the config path by `--config-path` flag when start the challenger.
 
 :::info
-Reference for a complete config file
+Reference for a complete [config file](https://github.com/bnb-chain/bnb-chain-charts/blob/master/gnfd-challenger-testnet-values/values.yaml#L4)
 :::
 
 1. Set your private key and bls key (via file or aws secret).
