@@ -3,11 +3,30 @@ title: Run Challenger
 order: 6
 ---
 
-# Run Challenger
+## Prerequisites
 
-## Challenger
+### Recommended Hardware
 
-### Preparation
+The following lists the recommended hardware requirements:
+- Hardware Requirements: Desktop or laptop hardware running recent versions of Mac OS X, or Linux.
+- CPU: 4 cores
+- RAM: 4 GB
+- Relational database: Mysql
+
+### Key Preparation
+- Challenger private key: Used to sign and approve transactions.
+- Bls private key: Used to aggregate votes.
+
+These two keys refer to `validator_challenger` and `validator_bls` created in [become-validator](../run-node/become-validator.md) step 2.
+
+You can retrieve them with the following commands.
+```bash
+gnfd keys export validator_challenger --unarmored-hex --unsafe --keyring-backend test
+
+gnfd keys export validator_bls --unarmored-hex --unsafe --keyring-backend test
+```
+
+## Prepare Binary
 
 Get the greenfield-challenger app by running the following command in your terminal:
 
@@ -16,9 +35,7 @@ git clone --branch "$(curl -s https://api.github.com/repos/bnb-chain/greenfield-
 cd greenfield-challenger
 ```
 
-### Deployment
-
-#### Config
+## Config
 
 Modify `config/config.json`. Or, you can create a new one and specify the config path by `--config-path` flag when start the challenger.
 
@@ -118,7 +135,7 @@ docker run -it -v /your/data/path:/greenfield-challenger -e CONFIG_TYPE="local" 
 
 ## Deployment in Kubernetes
 
-These are the steps to deploy the greenfield challenger and relayer using Helm Chart V3.
+These are the steps to deploy the greenfield challenger using Helm Chart V3.
 
 We run these commands first to get the chart and test the installation.
 
@@ -127,15 +144,12 @@ helm repo add bnb-chain https://chart.bnbchain.world/
 helm repo update
 helm show values bnb-chain/gnfd-challenger-testnet-values > testnet-challenger-values.yaml
 helm install greenfield-challenger bnb-chain/gnfd-challenger -f testnet-challenger-values.yaml -n NAMESPACE --debug --dry-run
-helm show values bnb-chain/gnfd-relayer-testnet-values > testnet-relayer-values.yaml
-helm install greenfield-relayer bnb-chain/gnfd-relayer -f testnet-relayer-values.yaml -n NAMESPACE --debug --dry-run
 ```
 
 If dry-run runs successfully, we install the chart:
 
 ```
 helm install greenfield-challenger bnb-chain/gnfd-challenger -f testnet-challenger-values.yaml -n NAMESPACE
-helm install greenfield-relayer bnb-chain/gnfd-relayer -f testnet-relayer-values.yaml -n NAMESPACE
 ```
 
 ### Common Operations
@@ -145,11 +159,10 @@ Get the pods lists by running this commands:
 ```console
 kubectl get pods -n NAMESPACE
 ```
-See the history of versions of challenger and relayer  with command.
+See the version history of challenger with command.
 
 ```console
 helm history greenfield-challenger -n NAMESPACE
-helm history greenfield-relayer -n NAMESPACE
 ```
 
 ## How to uninstall
@@ -158,15 +171,14 @@ Remove application with command.
 
 ```console
 helm uninstall greenfield-challenger -n NAMESPACE
-helm uninstall greenfield-relayer -n NAMESPACE
 ```
 
 ## Parameters
 
 The following tables lists the configurable parameters of the chart and their default values.
 
-You **must** change the values according to the your aws environment parametes in 
-`greenfield-challenger/testnet-values.yaml` and ``greenfield-relayer/testnet-values.yaml`` file.
+You **must** change the values according to the your aws environment parameters in 
+`greenfield-challenger/testnet-values.yaml` file.
 
 1. In `greenfield-config`, change: `private_key` and `bls_private_key`.
 
