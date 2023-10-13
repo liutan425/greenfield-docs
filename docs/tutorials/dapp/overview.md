@@ -90,7 +90,7 @@ which includes several sample codes of different paradigms.
 
 ## What is more
 
-- [Quick Start](quick-start.md): editing permission through BSC smart contract.
+- [Quick Start](quick-start.mdx): editing permission through BSC smart contract.
 - [Primitives Interface](primitive-interface.md): lean more about the primitives interfaces.
 - [Permission Control](permission-control.md): learn more about the permission control.
 - [Smart Contract Integration](dapp-integration.md): learn more about how to integrate with smart contracts.

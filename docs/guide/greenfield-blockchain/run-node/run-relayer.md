@@ -17,7 +17,7 @@ The following lists the recommended hardware requirements:
 - Relayer private key: This is the account which is used to relay transaction between Greenfield and the BSC. Ensure it has balance on both Blockchain network.
 - Bls private key: Used to create bls signature for cross-chain package.
 
-These two keys refer to `validator_relayer` and `validator_bls` created in [become-mainnet-validator](../run-node/become-mainnet-validator.md) step 2.
+These two keys refer to `validator_relayer` and `validator_bls` created in [become-validator](../run-node/become-validator.md) step 2.
 
 You can retrieve them with the following commands.
 ```bash
