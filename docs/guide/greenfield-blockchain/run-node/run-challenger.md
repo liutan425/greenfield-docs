@@ -63,18 +63,26 @@ Refer to the "Key Preparation" section to acquire the challenger and bls keys.
 2. Set your RPC Address and Chain ID    
 
 <Tabs>
-   <TabItem value="mainnet" label="Mainnet">
+<TabItem value="mainnet" label="Mainnet">
+
+   ```bash
    "greenfield_config": {
        rpcAddr = "https://greenfield-chain.bnbchain.org:443"
        chainId = "greenfield_1017-1"
    }
-   </TabItem>
-   <TabItem value="testnet" label="Testnet">
+   ```
+
+</TabItem>
+<TabItem value="testnet" label="Testnet">
+
+   ```bash
    "greenfield_config": {
        rpcAddr = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
        chainId = "greenfield_5600-1"
    }
-   </TabItem>
+   ```
+
+</TabItem>
 </Tabs>
 
 
