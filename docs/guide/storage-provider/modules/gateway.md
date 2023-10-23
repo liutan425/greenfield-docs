@@ -87,4 +87,16 @@ Public files can be downloaded/viewed with the following points to notice:
 
 #### Private File Access
 
-Access private file is in design and will be provided in the new few releases. Currently, if you try to download or view a private file, an error will be thrown to let you know the object key you are using is illegal.
+Accessing private file via Universal Endpoints is available now. 
+1. Just browse an universal endpoint URL link, which points to a private file that you have access to read.
+2. Click the "connect wallet" button in the page
+
+    ![Connect wallet](../../../../static/asset/503-univ_connect_wallet.png#univ)
+
+3. Sign via the wallet to provide your identity, so that later SPs can verify your access permission
+
+    ![Sign](../../../../static/asset/505-univ_sign.png#univ)
+
+4. If your account doesn't have the read access to the target object, you can contact the object owner to ask for access permission.
+
+    ![Need Access](../../../../static/asset/504-univ_need_access.png#univ)

@@ -96,3 +96,6 @@
   background-color: var(--openapi-code-orange);
 }
 
+img[src*="#univ"] {
+  zoom:40%
+}
