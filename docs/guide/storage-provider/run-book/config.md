@@ -704,6 +704,7 @@ BsDBWriteAddress = "{your_db_address}"
 PathPattern = [{Key = "/auth/request_nonce", RateLimit = 100, RatePeriod = 'S'}, {Key = "/auth/update_key", RateLimit = 100, RatePeriod = 'S'},
 {Key = "/permission/.+/[^/]*/.+", RateLimit = 100, RatePeriod = 'S'},{Key = "/greenfield/admin/v1/get-approval", RateLimit = 100, RatePeriod = 'S'},
 {Key = "/greenfield/admin/v1/challenge", RateLimit = 20, RatePeriod = 'S'},
+{Key = "/greenfield/admin/v2/challenge", RateLimit = 20, RatePeriod = 'S'},
 {Key = "/greenfield/receiver/v1/replicate-piece", RateLimit = 100, RatePeriod = 'S'},{Key = "/greenfield/recovery/v1/get-piece", RateLimit = 50, RatePeriod = 'S'},
 {Key = "/greenfield/migrate/v1/notify-migrate-swap-out-task", RateLimit = 10, RatePeriod = 'S'},{Key = "/greenfield/migrate/v1/migrate-piece", RateLimit = 10, RatePeriod = 'S'},
 {Key = "/greenfield/migrate/v1/migration-bucket-approval", RateLimit = 10, RatePeriod = 'S'},{Key = "/greenfield/migrate/v1/get-swap-out-approval", RateLimit = 10, RatePeriod = 'S'},
