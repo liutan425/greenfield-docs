@@ -277,6 +277,43 @@ Example:
 ./build/bin/gnfd-sp recover.object --config ./config.toml -b bucket_name -l object_name1//_object_name2//object_name3
 ```
 
+### Claim SP Income
+
+To claim income, a storage provider can use `settle` cmd to settle income in global virtual group families or global
+virtual groups. To find the global virtual group families or global virtual groups to settle, a storage provider can
+use `query.primary.sp.income` or `query.secondary.sp.income` of `gnfd-sp` commands.
+
+Usage:
+```shell
+# query sp's income in global virtual group families
+gnfd-sp query.primary.sp.income --config config.toml --sp.id ${sp_id}
+```
+```shell
+# query sp's income in global virtual groups
+gnfd-sp query.secondary.sp.income --config config.toml --sp.id ${sp_id}
+```
+```shell
+# settle income in global virtual group family or global virtual groups
+gnfd tx virtualgroup settle [global-virtual-group-family-id] [global-virtual-group-ids] [flags]
+```
+
+Example:
+```shell
+# query sp's income in global virtual group families
+gnfd-sp query.primary.sp.income --config config.toml --sp.id 1
+```
+```shell
+# query sp's income in global virtual groups
+gnfd-sp query.secondary.sp.income --config config.toml --sp.id 2
+```
+```shell
+# settle income in global virtual group family with id 100
+gnfd tx virtualgroup settle 100 0 [flags]
+
+# settle income in global virtual groups with id 2 or 3 or 4
+gnfd tx virtualgroup settle 0 2,3,4 [flags]
+```
+
 ## Tools
 
 SP can use Greenfield Cmd or DCellar to verify its functions:
