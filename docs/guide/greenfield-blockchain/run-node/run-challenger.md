@@ -107,6 +107,13 @@ provided in the [key preparation](#key-preparation) section.
    }
    ```
 
+4. Config your internal sp config (for metrics purpose).
+
+   ```
+   "sp_config": {
+      "internal_sp_endpoints": [] // list of internal sps' endpoints
+   }
+   ```
 
 ## Build
 
