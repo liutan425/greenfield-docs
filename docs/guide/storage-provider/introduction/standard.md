@@ -75,7 +75,7 @@ The open source storage provider framework implements the Greenfield storage pro
 * [PieceStore](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/core/piecestore/piecestore.go): PieceStore defines the interfaces to the piece store that store the object payload data.
 * [PieceOp](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/core/piecestore/piecestore.go): PieceOp is a helper interface for piece key operator and piece size calculation.
 * [SPDB](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/core/spdb/spdb.go): SPDB is an interface to record the SP metadata.
-* [BSDB](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/core/bsdb/bsdb.go): BSDB is an interface to record the greenfield chain metadata.
+* [BSDB](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/store/bsdb/database.go): BSDB is an interface to record the greenfield chain metadata.
 * [TaskQueue](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/core/taskqueue/README.md): Task is an interface to the smallest unit of SP background service interaction. Task scheduling and execution are directly related to the order of task arrival, so task queue is a relatively important basic interface used by all modules inside SP.
 
 ### Modules
