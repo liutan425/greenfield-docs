@@ -11,7 +11,7 @@ This guide helps you set up an SP Node. Once you set up the SP Node successfully
   - [PieceStore Configuration](#piecestore-configuration)
   - [Gateway Configuration](#gateway-configuration)
     - [1. Support both path-style and virtual-style routers in https certificates](#1-support-both-path-style-and-virtual-style-routers-in-https-certificates)
-    - [2. Cross Region Configuration](#2-cross-region-configuration)
+    - [2. CORS Configuration](#2-cors-configuration)
 - [Create Storage Provider](#create-storage-provider)
   - [1. Compile SP](#1-compile-sp)
   - [2. SP Config](#2-sp-config)
@@ -169,9 +169,9 @@ rules:
         pathType: ImplementationSpecific
 ```
 
-#### 2. Cross Region Configuration
+#### 2. CORS Configuration
 
-When working with web applications (e.g. DCellar),  SPs need to allow cross region requests.
+When working with web applications (e.g. DCellar),  SPs need to allow CORS (Cross-Origin Resource Sharing) requests.
 See: [CORS Errors](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors)
 
 If CORS is not configured properly, you may find the DCellar (or any other web applications which mean to interact with your SP) will report CORS errors, similar to below:
@@ -196,6 +196,42 @@ After you finish the configuration, you can verify if it works in DCellar.
 3. Connect your wallet
 4. Find the "OPTIONS" request to your SP and check its status and response headers. If you see a similar result to the following screenshot, it means your CORS configuration is correct.
 ![CORRECT_CORS](../../../../static/asset/406-correct-cors.png)
+
+#### 3. Sample CORS Configuration for Nginx
+Many Storage Providers prefer to use nginx as their SP's reverse proxy server.  It can also help handle CORS requests.
+
+Below is a sample nginx config, which can return those expected http response headers, mentioned in [above section](#2-cors-configuration).
+Please note that the nginx servers should explicitly return 204 as response code for http requests with **OPTIONS** method. 
+
+```config
+
+server {
+    listen 443;
+    server_name example.com;
+
+    # Cors Preflight methods needs additional options and different Return Code
+    location / {
+        if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Allow-Methods' '*';
+            add_header 'Access-Control-Allow-Headers' '*';
+            add_header 'Access-Control-Max-Age' 1728000;
+            add_header 'Access-Control-Expose-Headers' '*';
+            add_header 'Content-Type' 'text/plain; charset=utf-8';
+            add_header 'Content-Length' 0;
+            return 204;
+        }
+
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Methods' '*';
+        add_header 'Access-Control-Allow-Headers' '*';
+        add_header 'Access-Control-Expose-Headers' '*';
+        
+        # Rest of your server configuration...
+    }
+}
+
+```
 
 ## Create Storage Provider
 
