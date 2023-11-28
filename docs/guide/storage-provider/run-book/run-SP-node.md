@@ -199,10 +199,10 @@ After you finish the configuration, you can verify if it works in DCellar.
 ![CORRECT_CORS](../../../../static/asset/406-correct-cors.png)
 
 #### 3. Sample CORS Configuration for Nginx
-Many Storage Providers prefer to use nginx as their SP's reverse proxy server. It can also help handle CORS requests.
+Many storage providers (SPs) prefer to use nginx as their SP's reverse proxy server. It can also help handle CORS requests.
 
-Below is a sample nginx config, which can return those expected http response headers, mentioned in [above section](#2-cors-configuration).
-Please note that the nginx servers should explicitly return 204 as response code for http requests with **OPTIONS** method. 
+Below is a sample nginx config, which can return those expected http response headers about CORS, mentioned in [above section](#2-cors-configuration).
+Please note that the nginx servers should explicitly return 204 as response code for http **OPTIONS** requests. 
 
 ```config
 
