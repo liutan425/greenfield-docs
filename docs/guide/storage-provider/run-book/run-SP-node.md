@@ -12,6 +12,7 @@ This guide helps you set up an SP Node. Once you set up the SP Node successfully
   - [Gateway Configuration](#gateway-configuration)
     - [1. Support both path-style and virtual-style routers in https certificates](#1-support-both-path-style-and-virtual-style-routers-in-https-certificates)
     - [2. CORS Configuration](#2-cors-configuration)
+    - [3. Sample CORS Configuration for Nginx](#3-sample-cors-configuration-for-nginx)
 - [Create Storage Provider](#create-storage-provider)
   - [1. Compile SP](#1-compile-sp)
   - [2. SP Config](#2-sp-config)
@@ -198,7 +199,7 @@ After you finish the configuration, you can verify if it works in DCellar.
 ![CORRECT_CORS](../../../../static/asset/406-correct-cors.png)
 
 #### 3. Sample CORS Configuration for Nginx
-Many Storage Providers prefer to use nginx as their SP's reverse proxy server.  It can also help handle CORS requests.
+Many Storage Providers prefer to use nginx as their SP's reverse proxy server. It can also help handle CORS requests.
 
 Below is a sample nginx config, which can return those expected http response headers, mentioned in [above section](#2-cors-configuration).
 Please note that the nginx servers should explicitly return 204 as response code for http requests with **OPTIONS** method. 
