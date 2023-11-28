@@ -39,7 +39,7 @@ The request does not have a request body.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org/?payment-buckets
+Host: gnfd-testnet-sp-*.bnbchain.org/?payment-buckets&payment-account=xxxx
 ```
 
 ## HTTP Response Header
@@ -118,9 +118,8 @@ The examples given all use path-style.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org/?payment-buckets
+Host: gnfd-testnet-sp-1.bnbchain.org/?payment-buckets&payment-account=0xBC212bF5d6004311E350a531A1946D572C4d85E4
 Date: Fri, 31 March 2023 17:32:00 GMT
-X-Gnfd-User-Address: user address string
 ```
 
 ### Sample Response: list user payment streams successfully
