@@ -33,7 +33,7 @@ This API is used to list object policies by specific action type. And it support
 | object-policies | string             | yes      | object-policies is only used for routing location, and it does not need to pass any value.                                                                                           |
 | limit           | string             | no       | limit  determines the number of policies data records to be returned. If the limit is set to 0, it will default to 50. If the limit exceeds 1000, only 1000 records will be returned.|
 | start-after     | string             | no       | start-after is used to input the policy id for pagination purposes.                                                                                                                  |
-| action-type     | [Action](#action)  | yes      | action-type defines the requested action type of permission.                                                                                                                         |
+| action-type     | [ActionType](#actiontype)  | yes      | action-type defines the requested action type of permission.                                                                                                                         |
 
 ### Request Body
 
@@ -60,7 +60,7 @@ The response returns the following HTTP headers.
 | --------------- | ---------------------------------- | --------------------------------------------------------------- |
 | Policies        | [Policies](#policies)              | policies defines object policies info.                          |
 
-### Action
+### ActionType
 
 | Value | Description                |
 | ----- | -------------------------- |
