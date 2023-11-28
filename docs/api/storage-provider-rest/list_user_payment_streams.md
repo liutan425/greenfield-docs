@@ -118,7 +118,7 @@ The examples given all use path-style.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org/?user-payments
+Host: gnfd-testnet-sp-1.bnbchain.org/?payment-buckets
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-User-Address: user address string
 ```
