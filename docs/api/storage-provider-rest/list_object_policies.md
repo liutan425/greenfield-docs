@@ -83,9 +83,9 @@ The response returns the following HTTP headers.
 
 | ParameterName  | Type                              | Description                                                                                                                    |
 | -------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| PrincipalType  | [PrincipalType](principletype)    | PrincipalType refers to the identity type of system users or entities.                                                         |
+| PrincipalType  | [PrincipalType](#principaltype)    | PrincipalType refers to the identity type of system users or entities.                                                         |
 | PrincipalValue | string                            | PrincipalValue defines the value of principal.                                                                                 |
-| ResourceType   | [ResourceType](resourcetype)      | ResourceType defines the type of resource that grants permission for.                                                          |
+| ResourceType   | [ResourceType](#resourcetype)      | ResourceType defines the type of resource that grants permission for.                                                          |
 | ResourceId     | string                            | ResourceId defines the bucket/object/group id of the resource that grants permission for.                                      |
 | CreateTimestamp| uint64                            | CreateTimestamp defines the create time of permission.                                                                         |
 | UpdateTimestamp| uint64                            | UpdateTimestamp defines the update time of permission.                                                                         |
