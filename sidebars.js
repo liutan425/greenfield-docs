@@ -246,7 +246,7 @@ const sidebars = {
           "api/storage-provider-rest/list_user_groups",
           "api/storage-provider-rest/list_user_owned_groups",
           "api/storage-provider-rest/list_user_payment_accounts",
-          "api/storage-provider-rest/list_user_payment_streams",
+          "api/storage-provider-rest/list_payment_account_streams",
           "api/storage-provider-rest/list_groups_by_ids",
           "api/storage-provider-rest/list_object_policies",
       ]
