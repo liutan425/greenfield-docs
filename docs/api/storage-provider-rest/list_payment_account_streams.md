@@ -38,8 +38,8 @@ The request does not have a request body.
 ## Request Syntax
 
 ```HTTP
-GET / HTTP/1.1
-Host: gnfd-testnet-sp*.bnbchain.org/?payment-buckets&payment-account=xxxx
+GET /?payment-buckets&payment-account=xxxx
+Host: gnfd-testnet-sp*.bnbchain.org
 ```
 
 ## HTTP Response Header
