@@ -12,7 +12,7 @@ This API is used to query a list of group members by a given group id. This API 
 
 | Description      | Definition                     |
 | ---------------- | ------------------------------ |
-| Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
+| Host(path-style) | gnfd-testnet-sp*.bnbchain.org |
 | Path(path-style) | /                              |
 | Method           | GET                            |
 
@@ -42,7 +42,7 @@ The request does not have a request body.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org/?group-members&group-id=2&limit=10
+Host: gnfd-testnet-sp*.bnbchain.org/?group-members&group-id=2&limit=10
 ```
 
 ## HTTP Response Header
@@ -81,7 +81,7 @@ The examples given all use path-style.
 
 ```HTTP
 GET /?group-members&group-id=2&limit=10 HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org
+Host: gnfd-testnet-sp1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-User-Address: user address string
 ```

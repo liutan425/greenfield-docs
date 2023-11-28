@@ -12,7 +12,7 @@ This API is used to query bucket read quota. And it supports both `virtual-hoste
 
 | Description                | Definition                                |
 | -------------------------- | ----------------------------------------- |
-| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp*.bnbchain.org |
 | Path(virtual-hosted-style) | /                                         |
 | Method                     | GET                                       |
 
@@ -45,7 +45,7 @@ None
 
 ```HTTP
 GET /?read-quota&year-month=YearMonth HTTP/1.1
-Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
+Host: BucketName.gnfd-testnet-sp*.bnbchain.org
 Authorization: Authorization
 ```
 
@@ -92,7 +92,7 @@ The examples given all use virtual-hosted-style.
 
 ```HTTP
 GET /?read-quota&year-month=2023-03 HTTP/1.1
-Host: myBucket.gnfd-testnet-sp-1.bnbchain.org
+Host: myBucket.gnfd-testnet-sp1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 ```

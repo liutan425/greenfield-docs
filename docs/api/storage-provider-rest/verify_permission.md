@@ -12,7 +12,7 @@ This API is used to Verify the input account’s permission to input items. This
 
 | Description      | Definition                            |
 | ---------------- | ------------------------------------- |
-| Host(path-style) | gnfd-testnet-sp-*.bnbchain.org        |
+| Host(path-style) | gnfd-testnet-sp*.bnbchain.org        |
 | Path(path-style) | /permission/:operator/:bucket/:action |
 | Method           | GET                                   |
 
@@ -42,7 +42,7 @@ The request does not have a request body.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org/permission/:operator/:bucket/:action?object=object
+Host: gnfd-testnet-sp*.bnbchain.org/permission/:operator/:bucket/:action?object=object
 ```
 
 ## HTTP Response Header
@@ -108,7 +108,7 @@ The examples given all use path-style.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org/permission/0x9d90A123c3A559a295fa99cCbC82b5ad2C33196B/asnnv/6?object=obgeio5g3y
+Host: gnfd-testnet-sp1.bnbchain.org/permission/0x9d90A123c3A559a295fa99cCbC82b5ad2C33196B/asnnv/6?object=obgeio5g3y
 Date: Fri, 31 March 2023 17:32:00 GMT
 ```
 

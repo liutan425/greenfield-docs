@@ -12,7 +12,7 @@ This API is used to list object policies by specific action type. And it support
 
 | Description                | Definition                                |
 | -------------------------- | ----------------------------------------- |
-| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp*.bnbchain.org |
 | Path(virtual-hosted-style) | /:object                                  |
 | Method                     | GET                                       |
 
@@ -43,7 +43,7 @@ The request does not have a request body.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org/?object-policies
+Host: gnfd-testnet-sp*.bnbchain.org/?object-policies
 ```
 
 ## HTTP Response Header
@@ -128,7 +128,7 @@ XML Body
 
 ```HTTP
 GET / HTTP/1.1
-Host: rzigw.gnfd-testnet-sp-1.bnbchain.org/2g36fzmd65?object-policies&limit=10&action-type=6
+Host: rzigw.gnfd-testnet-sp1.bnbchain.org/2g36fzmd65?object-policies&limit=10&action-type=6
 Date: Fri, 31 March 2023 17:32:00 GMT
 ```
 

@@ -12,7 +12,7 @@ This API is used to list user payment info. This API only supports `path-style` 
 
 | Description      | Definition                     |
 | ---------------- | ------------------------------ |
-| Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
+| Host(path-style) | gnfd-testnet-sp*.bnbchain.org |
 | Path(path-style) | /                              |
 | Method           | GET                            |
 
@@ -42,7 +42,7 @@ The request does not have a request body.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org/?user-payments
+Host: gnfd-testnet-sp*.bnbchain.org/?user-payments
 X-Gnfd-User-Address: Address
 ```
 
@@ -115,7 +115,7 @@ The examples given all use path-style.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org/?user-payments
+Host: gnfd-testnet-sp1.bnbchain.org/?user-payments
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-User-Address: user address string
 ```

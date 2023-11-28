@@ -14,7 +14,7 @@ This API only supports path-style requests.
 
 | Description      | Definition                        |
 | ---------------- | --------------------------------- |
-| Host(path-style) | gnfd-testnet-sp-*.bnbchain.org    |
+| Host(path-style) | gnfd-testnet-sp*.bnbchain.org    |
 | Path(path-style) | /greenfield/admin/v1/get-approval |
 | Method           | GET                               |
 
@@ -101,7 +101,7 @@ The request does not have a request body.
 
 ```HTTP
 GET /greenfield/admin/v1/get-approval?action=action HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org
+Host: gnfd-testnet-sp*.bnbchain.org
 Content-Type: ContentType
 X-Gnfd-Unsigned-Msg: UnsignedMsg
 Authorization: Authorization
@@ -142,7 +142,7 @@ The following request sends `CreateBucket` action to get approval.
 
 ```HTTP
 GET /greenfield/admin/v1/get-approval?action=CreateBucket HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org
+Host: gnfd-testnet-sp1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-Unsigned-Msg: unsigned msg string
 Authorization: authorization string
@@ -162,7 +162,7 @@ The following request sends `CreateObject` action to get approval.
 
 ```HTTP
 GET /greenfield/admin/v1/get-approval?action=CreateObject HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org
+Host: gnfd-testnet-sp1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-Unsigned-Msg: unsigned msg string
 Authorization: authorization string
@@ -182,7 +182,7 @@ The following request sends `CreateBucket` action to get approval.
 
 ```HTTP
 GET /greenfield/admin/v1/get-approval?action=CreateBucket HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org
+Host: gnfd-testnet-sp1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-Unsigned-Msg: unsigned msg string
 Authorization: authorization string

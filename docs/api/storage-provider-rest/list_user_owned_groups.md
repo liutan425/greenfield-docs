@@ -12,7 +12,7 @@ This API is used to retrieve groups where the user is the owner. This API only s
 
 | Description      | Definition                     |
 | ---------------- | ------------------------------ |
-| Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
+| Host(path-style) | gnfd-testnet-sp*.bnbchain.org |
 | Path(path-style) | /                              |
 | Method           | GET                            |
 
@@ -45,7 +45,7 @@ The request does not have a request body.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org/?owned-groups&start-after=15&limit=1
+Host: gnfd-testnet-sp*.bnbchain.org/?owned-groups&start-after=15&limit=1
 ```
 
 ## HTTP Response Header
@@ -84,7 +84,7 @@ The examples given all use path-style.
 
 ```HTTP
 GET /?owned-groups&start-after=1&limit=5 HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org
+Host: gnfd-testnet-sp1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-User-Address: user address string
 ```

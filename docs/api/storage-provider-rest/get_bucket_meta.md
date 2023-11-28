@@ -12,7 +12,7 @@ This API is used to get bucket meta by bucket name. And it supports both `virtua
 
 | Description                | Definition                                |
 | -------------------------- | ----------------------------------------- |
-| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp*.bnbchain.org |
 | Path(virtual-hosted-style) |                                           |
 | Method                     | GET                                       |
 
@@ -36,7 +36,7 @@ The request does not have a request body.
 
 ```HTTP
 GET /?bucket-meta HTTP/1.1
-Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
+Host: BucketName.gnfd-testnet-sp*.bnbchain.org
 ```
 
 ## HTTP Response Header
@@ -144,7 +144,7 @@ The examples given all use virtual-hosted-style.
 
 ```HTTP
 GET /?bucket-meta HTTP/1.1
-Host: j6it2.gnfd-testnet-sp-1.bnbchain.org
+Host: j6it2.gnfd-testnet-sp1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 ```
 

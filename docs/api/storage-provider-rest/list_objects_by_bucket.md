@@ -12,7 +12,7 @@ This API is used to query a bucket's all objects metadata info. And it supports 
 
 | Description                | Definition                                |
 | -------------------------- | ----------------------------------------- |
-| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp*.bnbchain.org |
 | Path(virtual-hosted-style) | /                                         |
 | Method                     | GET                                       |
 
@@ -44,7 +44,7 @@ The request does not have a request body.
 
 ```HTTP
 GET / HTTP/1.1
-Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
+Host: BucketName.gnfd-testnet-sp*.bnbchain.org
 ```
 
 ## HTTP Response Header
@@ -92,7 +92,7 @@ The examples given all use virtual-hosted-style.
 
 ```HTTP
 GET /?max-keys=5&continuation-token=Y2NjYy8=&prefix=t3&delimiter=/&include-removed=false HTTP/1.1
-Host: myBucket.gnfd-testnet-sp-1.bnbchain.org
+Host: myBucket.gnfd-testnet-sp1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 ```
 

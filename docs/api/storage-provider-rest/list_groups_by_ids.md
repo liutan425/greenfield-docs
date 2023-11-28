@@ -12,7 +12,7 @@ This API is used to query a list of group metadata info by group ids. This API o
 
 | Description      | Definition                     |
 | ---------------- | ------------------------------ |
-| Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
+| Host(path-style) | gnfd-testnet-sp*.bnbchain.org |
 | Path(path-style) | /                              |
 | Method           | GET                            |
 
@@ -35,7 +35,7 @@ The request does not have a path parameter.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org?groups-query&ids=1,2
+Host: gnfd-testnet-sp*.bnbchain.org?groups-query&ids=1,2
 Date: Fri, 31 March 2023 17:32:00 GMT
 ```
 
@@ -74,7 +74,7 @@ The examples given all use path-style.
 
 ```HTTP
 GET /?groups-query&ids=1,2,333 HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org
+Host: gnfd-testnet-sp1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 ```
 

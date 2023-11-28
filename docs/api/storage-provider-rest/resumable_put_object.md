@@ -12,7 +12,7 @@ This API is used to upload an object to Greenfield SP. And it supports both `vir
 
 | Desscription               | Definition                                |
 | -------------------------- | ----------------------------------------- |
-| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp*.bnbchain.org |
 | Path(path-style)           | /ObjectName                               |
 | Method                     | POST                                      |
 
@@ -88,7 +88,7 @@ The examples given all use virtual-hosted-style.
 
 ```HTTP
 PUT /my-image.jpg HTTP/1.1
-Host: myBucket.gnfd-testnet-sp-*.bnbchain.org
+Host: myBucket.gnfd-testnet-sp*.bnbchain.org
 url[/bucket/object?complete=false&offset=0]
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string

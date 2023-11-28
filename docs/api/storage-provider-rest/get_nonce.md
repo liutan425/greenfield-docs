@@ -14,7 +14,7 @@ See [off-chain authentication specification](../../guide/storage-provider/module
 
 | Description | Definition                     |
 | ----------- | ------------------------------ |
-| Host        | gnfd-testnet-sp-*.bnbchain.org |
+| Host        | gnfd-testnet-sp*.bnbchain.org |
 | Path        | /auth/request_nonce            |
 | Method      | GET                            |
 
@@ -44,7 +44,7 @@ The request does not have a request body.
 
 ```HTTP
 GET /auth/request_nonce HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org
+Host: gnfd-testnet-sp*.bnbchain.org
 X-Gnfd-User-Address: UserAddress
 X-Gnfd-App-Domain: AppDomain
 ```
@@ -89,7 +89,7 @@ XML Body
 
 ```HTTP
 GET /auth/request_nonce HTTP/1.1
-Host: gnfd-testnet-sp-4.bnbchain.org
+Host: gnfd-testnet-sp4.bnbchain.org
 X-Gnfd-User-Address: 0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0
 X-Gnfd-App-Domain: https://greenfield.dapp.io
 ```

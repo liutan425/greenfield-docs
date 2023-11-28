@@ -12,7 +12,7 @@ This API is used to download an object from Greenfield SP. And it supports both 
 
 | Description                | Definition                                |
 | -------------------------- | ----------------------------------------- |
-| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp*.bnbchain.org |
 | Path(virtual-hosted-style) | /ObjectName                               |
 | Method                     | GET                                       |
 
@@ -41,7 +41,7 @@ The request does not have a request body.
 
 ```HTTP
 GET /ObjectName HTTP/1.1
-Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
+Host: BucketName.gnfd-testnet-sp*.bnbchain.org
 Authorization: Authorization
 Range: Range
 ```
@@ -77,7 +77,7 @@ The examples given all use virtual-hosted-style.
 
 ```HTTP
 GET /my-image.jpg HTTP/1.1
-Host: myBucket.gnfd-testnet-sp-1.bnbchain.org
+Host: myBucket.gnfd-testnet-sp1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 ```

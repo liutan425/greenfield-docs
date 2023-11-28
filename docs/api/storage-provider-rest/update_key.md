@@ -14,7 +14,7 @@ See [off-chain authentication specification](../../guide/storage-provider/module
 
 | Description | Definition                     |
 | ----------- | ------------------------------ |
-| Host        | gnfd-testnet-sp-*.bnbchain.org |
+| Host        | gnfd-testnet-sp*.bnbchain.org |
 | Path        | /auth/update_key               |
 | Method      | POST                           |
 
@@ -106,7 +106,7 @@ The request does not have a request body.
 
 ```HTTP
 POST /auth/update_key HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org
+Host: gnfd-testnet-sp*.bnbchain.org
 Origin: Origin
 X-Gnfd-App-Domain: AppDomain
 X-Gnfd-App-Reg-Nonce: Nonce

@@ -12,7 +12,7 @@ This API is used to query a list of objects metadata info by object ids. This AP
 
 | Description      | Definition                     |
 | ---------------- | ------------------------------ |
-| Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
+| Host(path-style) | gnfd-testnet-sp*.bnbchain.org |
 | Path(path-style) | /                              |
 | Method           | GET                            |
 
@@ -35,7 +35,7 @@ The request does not have a path parameter.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org?objects-query&ids=1,2
+Host: gnfd-testnet-sp*.bnbchain.org?objects-query&ids=1,2
 Date: Fri, 31 March 2023 17:32:00 GMT
 Content-Type: application/xml
 Content-Length: length
@@ -77,7 +77,7 @@ The examples given all use path-style.
 
 ```HTTP
 GET /?objects-query&ids=1,2,3,4,5,333 HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org
+Host: gnfd-testnet-sp1.bnbchain.org
 ```
 
 ### Sample Response: Query a list of objects by object ids successfully

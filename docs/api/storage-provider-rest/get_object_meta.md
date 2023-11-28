@@ -12,7 +12,7 @@ This API is used to get object meta by object and bucket name. And it supports b
 
 | Description                | Definition                                |
 | -------------------------- | ----------------------------------------- |
-| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp*.bnbchain.org |
 | Path(virtual-hosted-style) | /:object                                  |
 | Method                     | GET                                       |
 
@@ -40,7 +40,7 @@ The request does not have a request body.
 
 ```HTTP
 GET /ObjectName?object-meta HTTP/1.1
-Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
+Host: BucketName.gnfd-testnet-sp*.bnbchain.org
 ```
 
 ## HTTP Response Header
@@ -128,7 +128,7 @@ The examples given all use virtual-hosted-style.
 
 ```HTTP
 GET /brwdhocykj?object-meta HTTP/1.1
-Host: rmr9e.gnfd-testnet-sp-1.bnbchain.org
+Host: rmr9e.gnfd-testnet-sp1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 ```
 
